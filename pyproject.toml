@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nonocycle"
+description = "Prevent cyclic imports before they happen"
+authors = [
+    { name = "guarin" },
+]
+readme = "README.md"
+license = { "text" = "MIT" }
+keywords = [
+    "python",
+]
+dynamic = ["version"]
+requires-python = ">=3.8"
+dependencies = [
+    "networkx>=1.5.12",
+    "pydeps>=1.11",
+]
+
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+nonocycle = "nonocycle.nonocycle:cli_entrypoint"
+
+[tool.setuptools]
+package-dir = {""= "src"}
+
+[tool.setuptools.dynamic]
+version = {attr = "nonocycle.__version__"}
+
+[tool.ruff.lint]
+# Enable isort rules.
+extend-select = ["I"]
